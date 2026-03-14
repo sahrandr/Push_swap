@@ -1,41 +1,68 @@
-NAME = push_swap.a
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: sahrandr <sahrandr@student.42antananari    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2026/03/13 00:00:00 by                   #+#    #+#              #
+#    Updated: 2026/03/14 15:59:42 by sahrandr         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-CC = cc
+NAME		= push_swap
 
-FLAGS = -Wall -Werror -Wextra
+CC			= cc
+CFLAGS		= -Wall -Wextra -Werror
 
-HEADER =  push_swap.h 
+SRCS		= push_swap.c \
+			  adaptive_sort.c \
+			  assign_index.c \
+			  bring_to_top.c \
+			  calculate_disorder.c \
+			  complex_sort.c \
+			  count_bytes.c \
+			  count_chunk.c \
+			  create_node.c \
+			  find_in_chunk.c \
+			  find_max_position.c \
+			  find_min_position.c \
+			  free_split.c \
+			  free_stack.c \
+			  ft_atoi.c \
+			  ft_isdi.c \
+			  ft_lstadd_back.c \
+			  ft_split_mod.c \
+			  ft_substr.c \
+			  get_bits.c \
+			  is_duplicate.c \
+			  is_in_chunk.c \
+			  medium_sort.c \
+			  process_bits.c \
+			  push_utils.c \
+			  reverse_rotate.c \
+			  rotation_utils.c \
+			  simple_sort.c \
+			  stack_size.c \
+			  swap_utils.c\
+			  radix_sort.c
 
-SRCS = create_node.c\
-		free_stack.c\
-		ft_atoi.c\
-		ft_isdi.c\
-		ft_split_mod.c\
-		is_duplicate.c\
-		push_swap.c\
-		free_split.c\
-		ft_substr.c\
-		ft_lstadd_back.c\
-		push_utils.c\
-		reverse_rotate.c\
-		rotation_utils.c\
-		swap_utils.c\
+OBJS		= $(SRCS:.c=.o)
 
-OBJS = $(SRCS:.c=.o)
+all:		$(NAME)
 
-all: $(NAME)
+$(NAME):	$(OBJS)
+			$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
-$(NAME) : $(OBJS)
-	ar rcs $(NAME) $(OBJS)
-
-%.o: %.c
-	$(CC) $(FLAGS) -c $< -o $@
+%.o:		%.c
+			$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJS)
+			rm -f $(OBJS)
 
-fclean: clean
-	rm -f $(NAME)
+fclean:		clean
+			rm -f $(NAME)
 
-re: fclean all
-.PHONY: all clean fclean re
+re:			fclean all
+
+.PHONY:		all clean fclean re

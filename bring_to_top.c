@@ -1,26 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_size.c                                       :+:      :+:    :+:   */
+/*   bring_to_top.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mny-aro- <mny-aro-@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/07 14:44:02 by mny-aro-          #+#    #+#             */
-/*   Updated: 2026/03/08 15:31:39 by mny-aro-         ###   ########.fr       */
+/*   Created: 2026/03/09 09:51:13 by mny-aro-          #+#    #+#             */
+/*   Updated: 2026/03/09 09:59:45 by mny-aro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	stack_size(t_stack *stack) //comme  strlen mais pour les chaines.
+void	bring_to_top(t_stack **stack_a, int position, int size)
 {
-	int	count;
-
-	count = 0;
-	while (stack != NULL)
+	int	rotation;
+	
+	rotation = 0;
+	if (position <= (size /2))
 	{
-		count++;
-		stack = stack ->next;
+		while (position > 0)
+		{
+			ra(stack_a);
+			position--;
+		}
 	}
-	return (count);
+	else
+	{
+		rotation = size - position;
+		while (rotation > 0)
+		{
+			rra(stack_a);
+			rotation--;
+		}
+
+	}
 }

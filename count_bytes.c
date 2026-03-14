@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdi.c                                          :+:      :+:    :+:   */
+/*   count_bytes.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sahrandr <sahrandr@student.42antananari    +#+  +:+       +#+        */
+/*   By: mny-aro- <mny-aro-@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/04 09:57:50 by sahrandr          #+#    #+#             */
-/*   Updated: 2026/03/14 14:08:04 by sahrandr         ###   ########.fr       */
+/*   Created: 2026/03/10 10:45:21 by mny-aro-          #+#    #+#             */
+/*   Updated: 2026/03/10 13:53:20 by mny-aro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_isdi(char *str)
+int	count_bits(int n)
 {
-	int	i;
-
-	i = 0;
-	if (!str || !str[i])
-		return (0);
-	if (str[i] == '-' || str[i] == '+')
-		i++;
-	if (str[i] == '\0')
-		return (0);
-	while (str[i])
-	{
-		if (!(str[i] >= '0' && str[i] <= '9'))
-			return (0);
-		i++;
-	}
-	return (1);
+	int	bits;
+	
+	if (n < 1)
+		return (1);
+	bits = 0;
+	while ((n - 1) >> bits)
+		bits++;
+	return (bits);
 }

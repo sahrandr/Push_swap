@@ -1,33 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdi.c                                          :+:      :+:    :+:   */
+/*   get_bits.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sahrandr <sahrandr@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/04 09:57:50 by sahrandr          #+#    #+#             */
-/*   Updated: 2026/03/14 14:08:04 by sahrandr         ###   ########.fr       */
+/*   Created: 2026/03/10 13:55:28 by mny-aro-          #+#    #+#             */
+/*   Updated: 2026/03/14 14:41:29 by sahrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_isdi(char *str)
+int	get_bit(int number, int bit_position)
 {
-	int	i;
-
-	i = 0;
-	if (!str || !str[i])
-		return (0);
-	if (str[i] == '-' || str[i] == '+')
-		i++;
-	if (str[i] == '\0')
-		return (0);
-	while (str[i])
-	{
-		if (!(str[i] >= '0' && str[i] <= '9'))
-			return (0);
-		i++;
-	}
-	return (1);
+    return ((number >> bit_position) & 1);
 }

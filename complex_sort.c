@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdi.c                                          :+:      :+:    :+:   */
+/*   complex_sort.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sahrandr <sahrandr@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/04 09:57:50 by sahrandr          #+#    #+#             */
-/*   Updated: 2026/03/14 14:08:04 by sahrandr         ###   ########.fr       */
+/*   Created: 2026/03/10 14:22:35 by mny-aro-          #+#    #+#             */
+/*   Updated: 2026/03/14 13:03:30 by sahrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_isdi(char *str)
+void	complex_sort(t_stack **stack_a, t_stack **stack_b)
 {
-	int	i;
+    int	bits;
+    int	current_bit;
 
-	i = 0;
-	if (!str || !str[i])
-		return (0);
-	if (str[i] == '-' || str[i] == '+')
-		i++;
-	if (str[i] == '\0')
-		return (0);
-	while (str[i])
+	if (!*stack_a || !(*stack_a)->next)
+		return ;
+    bits = count_bits(stack_size(*stack_a));
+	current_bit = 0;
+	while (current_bit < bits)
 	{
-		if (!(str[i] >= '0' && str[i] <= '9'))
-			return (0);
-		i++;
+		process_bits(stack_a, stack_b, current_bit);
+		current_bit++;
 	}
-	return (1);
 }

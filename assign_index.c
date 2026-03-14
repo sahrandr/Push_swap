@@ -6,26 +6,26 @@
 /*   By: mny-aro- <mny-aro-@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 13:40:25 by mny-aro-          #+#    #+#             */
-/*   Updated: 2026/03/07 14:43:43 by mny-aro-         ###   ########.fr       */
+/*   Updated: 2026/03/13 11:13:28 by mny-aro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	bubble_sort(int arr[], int n) //Tri a bulle
+static void	bubble_sort(int arr[], int n)
 {
-	int	check; //verification
-	int	i; //index
-	int	temp; //pour le swap
+	int	check;
+	int	i;
+	int	temp;
 
-	check = 1; //on l'initialise a 1
+	check = 1;
 	while (check)
 	{
 		check = 0;
 		i = 0;
 		while (i < n - 1)
 		{
-			if (arr[i] > arr[i + 1]) // on swap si par ex 1 est avant 2 
+			if (arr[i] > arr[i + 1])
 			{
 				temp = arr[i];
 				arr[i] = arr[i + 1];
@@ -38,7 +38,7 @@ static void	bubble_sort(int arr[], int n) //Tri a bulle
 }
 
 
-static void	fill_tab(t_stack *stack, int *tab) // completion du tableau
+static void	fill_tab(t_stack *stack, int *tab)
 {
 	int	i;
 
@@ -51,14 +51,14 @@ static void	fill_tab(t_stack *stack, int *tab) // completion du tableau
 	}
 }
 
-static void	set_indexes(t_stack *stack, int *tab, int size) // ajout des indexes c-a-d le tab [tab[0], tab[1], ...] devient -> [0, 1, 2, ...] ou tab[0] = 0 et ainsi de suite
+static void	set_indexes(t_stack *stack, int *tab, int size)
 {
 	int	i;
 
 	while (stack)
 	{
 		i = 0;
-		while (i < size);
+		while (i < size)
 		{
 			if (stack ->value == tab[i])
 			{
@@ -71,8 +71,7 @@ static void	set_indexes(t_stack *stack, int *tab, int size) // ajout des indexes
 	}
 }
 
-
-void	assign_index(t_stack *stack_a) // la fonction prinipale d'indexation
+void	assign_index(t_stack *stack_a)
 {
 	int size;
 	int *tab;

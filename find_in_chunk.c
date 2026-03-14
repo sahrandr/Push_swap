@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_size.c                                       :+:      :+:    :+:   */
+/*   find_in_chunk.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mny-aro- <mny-aro-@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/07 14:44:02 by mny-aro-          #+#    #+#             */
-/*   Updated: 2026/03/08 15:31:39 by mny-aro-         ###   ########.fr       */
+/*   Created: 2026/03/09 10:50:18 by mny-aro-          #+#    #+#             */
+/*   Updated: 2026/03/09 11:30:19 by mny-aro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	stack_size(t_stack *stack) //comme  strlen mais pour les chaines.
+int	find_in_chunk(t_stack *stack, int chunk_min, int chunk_max)
 {
-	int	count;
-
-	count = 0;
-	while (stack != NULL)
+    int	position;
+	
+	if (!stack)
+		return (-1);
+    position = 0;
+	while (stack)
 	{
-		count++;
-		stack = stack ->next;
+		if (is_in_chunk(stack->index, chunk_min, chunk_max))
+			return (position); /*trouver,on retourne sa position*/
+		position++;
+		stack = stack->next;
 	}
-	return (count);
+    return (-1);
 }

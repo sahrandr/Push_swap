@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdi.c                                          :+:      :+:    :+:   */
+/*   process_bits.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sahrandr <sahrandr@student.42antananari    +#+  +:+       +#+        */
+/*   By: mny-aro- <mny-aro-@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/04 09:57:50 by sahrandr          #+#    #+#             */
-/*   Updated: 2026/03/14 14:08:04 by sahrandr         ###   ########.fr       */
+/*   Created: 2026/03/10 14:00:21 by mny-aro-          #+#    #+#             */
+/*   Updated: 2026/03/13 15:33:51 by mny-aro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_isdi(char *str)
+void	process_bits(t_stack **stack_a, t_stack **stack_b, int bit)
 {
-	int	i;
+    int	size;
+    int	i;
 
+    size = stack_size(*stack_a);
 	i = 0;
-	if (!str || !str[i])
-		return (0);
-	if (str[i] == '-' || str[i] == '+')
-		i++;
-	if (str[i] == '\0')
-		return (0);
-	while (str[i])
+	while (i < size)
 	{
-		if (!(str[i] >= '0' && str[i] <= '9'))
-			return (0);
+		if (get_bit((*stack_a)->index, bit) == 0)
+			pb(stack_a, stack_b);
+		else
+			ra(stack_a);
 		i++;
 	}
-	return (1);
+	while (*stack_b)
+	{
+		pa(stack_a, stack_b);
+	}		
 }

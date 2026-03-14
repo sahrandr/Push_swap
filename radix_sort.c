@@ -1,33 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdi.c                                          :+:      :+:    :+:   */
+/*   radix_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sahrandr <sahrandr@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/04 09:57:50 by sahrandr          #+#    #+#             */
-/*   Updated: 2026/03/14 14:08:04 by sahrandr         ###   ########.fr       */
+/*   Created: 2026/03/14 12:58:57 by sahrandr          #+#    #+#             */
+/*   Updated: 2026/03/14 14:30:03 by sahrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_isdi(char *str)
+void	radix_sort(t_stack **stack_a, t_stack **stack_b)
 {
-	int	i;
+	int max_bits;
+	int i;
+	int j;
+	int size;
+
+	size = stack_size(*stack_a);
+	max_bits = count_bits(size);
 
 	i = 0;
-	if (!str || !str[i])
-		return (0);
-	if (str[i] == '-' || str[i] == '+')
-		i++;
-	if (str[i] == '\0')
-		return (0);
-	while (str[i])
+	while (i < max_bits)
 	{
-		if (!(str[i] >= '0' && str[i] <= '9'))
-			return (0);
+		j = 0;
+		while (j < size)
+		{
+			if ((((*stack_a)->index >> i) & 1) == 0)
+				pb(stack_a, stack_b);
+			else
+				ra(stack_a);
+			j++;
+		}
+		while (stack_size(*stack_b) > 0)
+			pa(stack_a, stack_b);
 		i++;
 	}
-	return (1);
 }

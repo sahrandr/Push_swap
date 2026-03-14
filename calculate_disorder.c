@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   disorder.c                                         :+:      :+:    :+:   */
+/*   calculate_disorder.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mny-aro- <mny-aro-@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 04:48:26 by mny-aro-          #+#    #+#             */
-/*   Updated: 2026/03/07 14:57:53 by mny-aro-         ###   ########.fr       */
+/*   Updated: 2026/03/13 10:42:45 by mny-aro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ float	calculate_disorder(t_stack *stack_a)
     total_pairs = 0;
 	size = stack_size(stack_a);
     ptr1 = stack_a;
-	while (ptr1 && ptr1->index)
+	while (ptr1 && ptr1->next)
 	{
 		ptr2 = ptr1->next;
 		while (ptr2)
