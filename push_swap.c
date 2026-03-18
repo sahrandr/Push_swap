@@ -6,7 +6,7 @@
 /*   By: sahrandr <sahrandr@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/28 15:56:17 by sahrandr          #+#    #+#             */
-/*   Updated: 2026/03/14 16:34:19 by sahrandr         ###   ########.fr       */
+/*   Updated: 2026/03/18 13:16:22 by sahrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,28 +47,48 @@ static int	fill_stack(t_stack **stack_a, char **args, int must_free)
 
 int	main(int argc, char **argv)
 {
-	t_stack	*stack_a;
-	t_stack	*stack_b;
-	char	**args;
+	t_stack *a;
+	t_stack *b;
+	t_strategy strat = STRAT_ADAPTIVE;
+	char **args;
+	int i;
+	int bench;
+	int dst;
 
-	stack_a = NULL;
-	stack_b = NULL;
-	if (argc < 2)
-		return (0);
-	if (argc == 2)
-		args = ft_split_mod(argv[1], ' ');
-	else
-		args = argv + 1;
-	if (!args)
-		return (1);
-	if (fill_stack(&stack_a, args, (argc == 2)))
-		return (1);
-	if (stack_size(stack_a) > 1)
+	i = 1;
+	bench = 0;
+	dst = 1;
+	a = NULL;
+	b = NULL;
+
+	while (i < argc)
 	{
-		assign_index(stack_a);
-		adaptive_sort(&stack_a, &stack_b);
+		if (argc && argv[i][0] == '-' && argv[i][1] == '-')
+		{
+			if (!ft_strcmp(argv[i], "--simple"))
+				strat = STRAT_SIMPLE;
+			if (!ft_strcmp(argv[i], "--complex"))
+				strat = STRAT_COMPLEX;
+			if (!ft_strcmp(argv[i], "--bench"))
+				bench = 1;
+		}
+		else//pas de -- dans le argv
+			argv[dst++] = argv[i];
+		i++;
 	}
-	if (argc == 2)
-		free_split(args);
-	return (free_stack(&stack_a), free_stack(&stack_b), 0);
-}
+		argc = dst;//le programmes oublie les argument apres le flag
+		if (argc == 1)
+			return (0);
+		if (argc == 2)
+			args = ft_split_mod(argv[1], ' ');
+		else
+			args = argv + 1;
+		if (!args || fill_stack(&a, args, (argc == 2)))
+			return (1);
+		if (stack_size(a) > 1) 
+			assign_index(a); 
+			dispatch_sort(&a, &b, strat);
+		if (bench) print_benchmark();
+		    if (argc == 2) free_split(args);
+		return (free_stack(&a), free_stack(&b), 0);
+	}

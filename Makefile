@@ -6,7 +6,7 @@
 #    By: sahrandr <sahrandr@student.42antananari    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/13 00:00:00 by                   #+#    #+#              #
-#    Updated: 2026/03/14 15:59:42 by sahrandr         ###   ########.fr        #
+#    Updated: 2026/03/17 14:27:39 by sahrandr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,8 @@ SRCS		= push_swap.c \
 			  simple_sort.c \
 			  stack_size.c \
 			  swap_utils.c\
-			  radix_sort.c
+			  radix_sort.c\
+			  ft_strcmp.c
 
 OBJS		= $(SRCS:.c=.o)
 
