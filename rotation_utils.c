@@ -6,7 +6,7 @@
 /*   By: sahrandr <sahrandr@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 14:52:40 by sahrandr          #+#    #+#             */
-/*   Updated: 2026/03/10 17:09:14 by sahrandr         ###   ########.fr       */
+/*   Updated: 2026/03/20 15:07:10 by sahrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,14 @@ void	ra(t_stack **a)
 {
 	rotation(a);
 	write(1, "ra\n", 3);
+	increment_stats(RA);
 }
 
 void	rb(t_stack **b)
 {
 	rotation(b);
 	write(1, "rb\n", 3);
+	increment_stats(RB);
 }
 
 void	rr(t_stack **a, t_stack **b)
@@ -45,4 +47,5 @@ void	rr(t_stack **a, t_stack **b)
 	rotation(a);
 	rotation(b);
 	write(1, "rr\n", 3);
+	increment_stats(RR);
 }

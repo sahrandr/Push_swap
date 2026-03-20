@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   adaptive_sort.c                                    :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sahrandr <sahrandr@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/11 10:24:24 by mny-aro-          #+#    #+#             */
-/*   Updated: 2026/03/20 14:52:58 by sahrandr         ###   ########.fr       */
+/*   Created: 2026/03/20 17:08:18 by sahrandr          #+#    #+#             */
+/*   Updated: 2026/03/20 17:08:25 by sahrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	adaptive_sort(t_stack **a, t_stack **b)
+void	ft_putnbr_fd(int n, int fd)
 {
-	float	disorder;
+	char	s;
+	long	nb;
 
-	if (!*a || !(*a)->next)
-		return ;
-	disorder = calculate_disorder(*a);
-	if (disorder == 0)
-		return ;
-	if (disorder < 0.2)
-		simple_sort(a, b);
-	else if (disorder < 0.5)
-		medium_sort(a, b);
-	else
-		complex_sort(a, b);
+	nb = n;
+	if (nb < 0)
+	{
+		s = '-';
+		write(fd, &s, 1);
+		nb = -nb;
+	}
+	if (nb >= 10)
+		ft_putnbr_fd(nb / 10, fd);
+	s = (nb % 10) + '0';
+	write(fd, &s, 1);
 }

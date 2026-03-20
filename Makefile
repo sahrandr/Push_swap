@@ -1,22 +1,10 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: sahrandr <sahrandr@student.42antananari    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2026/03/13 00:00:00 by                   #+#    #+#              #
-#    Updated: 2026/03/17 14:27:39 by sahrandr         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME		= push_swap
+BONUS_NAME	= checker
 
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror
 
-SRCS		= push_swap.c \
-			  adaptive_sort.c \
+COMMON_SRCS	= adaptive_sort.c \
 			  assign_index.c \
 			  bring_to_top.c \
 			  calculate_disorder.c \
@@ -34,36 +22,51 @@ SRCS		= push_swap.c \
 			  ft_lstadd_back.c \
 			  ft_split_mod.c \
 			  ft_substr.c \
+			  ft_strcmp.c \
 			  get_bits.c \
 			  is_duplicate.c \
 			  is_in_chunk.c \
+			  is_sorted.c \
 			  medium_sort.c \
 			  process_bits.c \
 			  push_utils.c \
+			  radix_sort.c \
 			  reverse_rotate.c \
 			  rotation_utils.c \
 			  simple_sort.c \
+			  small_sort.c \
 			  stack_size.c \
+			  stats.c \
 			  swap_utils.c\
-			  radix_sort.c\
-			  ft_strcmp.c
+			  ft_putsr_fd.c\
+			  ft_putnbr_fd.c\
+			  dispatch_sort.c
+
+SRCS		= main.c push_swap.c $(COMMON_SRCS)
+BONUS_SRCS	= checker.c $(COMMON_SRCS)
 
 OBJS		= $(SRCS:.c=.o)
+BONUS_OBJS	= $(BONUS_SRCS:.c=.o)
 
 all:		$(NAME)
 
 $(NAME):	$(OBJS)
-			$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+
+bonus:		$(BONUS_NAME)
+
+$(BONUS_NAME): $(BONUS_OBJS)
+	$(CC) $(CFLAGS) $(BONUS_OBJS) -o $(BONUS_NAME)
 
 %.o:		%.c
-			$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-			rm -f $(OBJS)
+	rm -f $(OBJS) $(BONUS_OBJS)
 
 fclean:		clean
-			rm -f $(NAME)
+	rm -f $(NAME) $(BONUS_NAME)
 
-re:			fclean all
+re:		fclean all
 
-.PHONY:		all clean fclean re
+.PHONY:		all bonus clean fclean re

@@ -6,7 +6,7 @@
 /*   By: sahrandr <sahrandr@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 14:16:48 by sahrandr          #+#    #+#             */
-/*   Updated: 2026/03/10 17:09:09 by sahrandr         ###   ########.fr       */
+/*   Updated: 2026/03/20 15:37:40 by sahrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,12 @@ void	pa(t_stack **a, t_stack **b)
 {
 	push(b, a);
 	write(1, "pa\n", 3);
+	increment_stats(PA);
 }
 
 void	pb(t_stack **a, t_stack **b)
 {
 	push(a, b);
 	write(1, "pb\n",3);
+	increment_stats(PB);
 }

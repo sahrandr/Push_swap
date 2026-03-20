@@ -6,7 +6,7 @@
 /*   By: sahrandr <sahrandr@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 14:16:19 by sahrandr          #+#    #+#             */
-/*   Updated: 2026/03/10 17:09:11 by sahrandr         ###   ########.fr       */
+/*   Updated: 2026/03/20 15:06:30 by sahrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,14 @@ void	sa(t_stack **a)
 {
 	swap(a);
 	write(1, "sa\n", 3);
+	increment_stats(SA);
 }
 
 void	sb(t_stack **b)
 {
 	swap(b);
 	write(1, "sb\n", 3);
+	increment_stats(SB);
 }
 
 void	ss(t_stack **a, t_stack **b)
@@ -43,4 +45,5 @@ void	ss(t_stack **a, t_stack **b)
 	swap(a);
 	swap(b);
 	write(1, "ss\n", 3);
+	increment_stats(SS);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sahrandr <sahrandr@student.42antananari    +#+  +:+       +#+        */
+/*   By: mny-aro- <mny-aro-@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/17 15:04:59 by sahrandr          #+#    #+#             */
-/*   Updated: 2026/03/18 10:51:44 by sahrandr         ###   ########.fr       */
+/*   Updated: 2026/03/20 14:20:45 by mny-aro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,16 @@
 
 static int	do_instruction(char *line, t_stack **a, t_stack **b)
 {
-	if (ft_strcmp(line, "sa")) sa(a);
-	else if (ft_strcmp(line, "sb")) sb(b);
-	else if (ft_strcmp(line, "ss")) ss(a, b);
-	else if (ft_strcmp(line, "ra")) ra(a);
-	else if (ft_strcmp(line, "rb")) rb(b);
-	else if (ft_strcmp(line, "rr")) rr(a, b);
-	else if (ft_strcmp(line, "pa")) pa(a, b);
-	else if (ft_strcmp(line, "pb")) pb(a, b);
-	else if (ft_strcmp(line, "rra")) rra(a);
-	else if (ft_strcmp(line, "rrb")) rrb(b);
-	else if (ft_strcmp(line, "rrr")) rrr(a, b);
+	if (!ft_strcmp(line, "sa")) sa(a); // on verifie si elle est NUll pas l'inverse.
+	else if (!ft_strcmp(line, "sb")) sb(b);
+	else if (!ft_strcmp(line, "ss")) ss(a, b);
+	else if (!ft_strcmp(line, "ra")) ra(a);
+	else if (!ft_strcmp(line, "rb")) rb(b);
+	else if (!ft_strcmp(line, "pa")) pa(a, b);
+	else if (!ft_strcmp(line, "pb")) pb(a, b); // meuf le PAAAAAAAAAAAAAAAAAAAAAAAAAAA XD !!!
+	else if (!ft_strcmp(line, "rra")) rra(a);
+	else if (!ft_strcmp(line, "rrb")) rrb(b);
+	else if (!ft_strcmp(line, "rrr")) rrr(a, b);
 	else
 		return (1);
 	return (0);
@@ -76,13 +75,13 @@ static	char *read_instruction(void)
 	rd = read(0, &c, 1);
 	if (rd <= 0)
 		return (NULL);
-	while (rd < 0 && c != '\n')
+	while (rd > 0 && c != '\n' && i < 99) // securite du buffer 
 	{
 		buffer[i++] = c;
 		rd = read(0, &c, 1);
 	}
 	buffer[i] = '\0';
-	return (strdub(buffer));
+	return (ft_strdup(buffer));
 }
 
 int	main(int argc,char **argv)
