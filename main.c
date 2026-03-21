@@ -6,7 +6,7 @@
 /*   By: sahrandr <sahrandr@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/20 16:51:53 by sahrandr          #+#    #+#             */
-/*   Updated: 2026/03/20 16:52:26 by sahrandr         ###   ########.fr       */
+/*   Updated: 2026/03/21 16:29:21 by sahrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	main(int argc, char **argv)
 	a = NULL;
 	b = NULL;
 	info[0] = parse_flags(argc, argv, &strat, &info[1]);
+	if (info[0] < 0)
+		return (1);
 	if (info[0] == 1)
 		return (0);
 	if (info[0] == 2)

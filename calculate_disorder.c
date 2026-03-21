@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calculate_disorder.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mny-aro- <mny-aro-@student.42antananari    +#+  +:+       +#+        */
+/*   By: sahrandr <sahrandr@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 04:48:26 by mny-aro-          #+#    #+#             */
-/*   Updated: 2026/03/13 10:42:45 by mny-aro-         ###   ########.fr       */
+/*   Updated: 2026/03/21 15:02:44 by sahrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 float	calculate_disorder(t_stack *stack_a)
 {
-    int		mistakes;
-    int		total_pairs;
+	int		mistakes;
+	int		total_pairs;
 	int		size;
-    t_stack	*ptr1;
-    t_stack	*ptr2;
+	t_stack	*ptr1;
+	t_stack	*ptr2;
 
-    if (!stack_a || !stack_a->next) //Protection
-        return (0.0);
-    mistakes = 0;
-    total_pairs = 0;
+	if (!stack_a || !stack_a->next)
+		return (0.0);
+	mistakes = 0;
+	total_pairs = 0;
 	size = stack_size(stack_a);
-    ptr1 = stack_a;
+	ptr1 = stack_a;
 	while (ptr1 && ptr1->next)
 	{
 		ptr2 = ptr1->next;

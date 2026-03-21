@@ -6,7 +6,7 @@
 /*   By: sahrandr <sahrandr@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/28 15:56:17 by sahrandr          #+#    #+#             */
-/*   Updated: 2026/03/20 17:13:55 by sahrandr         ###   ########.fr       */
+/*   Updated: 2026/03/21 16:29:21 by sahrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,37 +40,35 @@ int	fill_stack(t_stack **stack_a, char **args, int must_free)
 	return (0);
 }
 
-int	parse_flags(int argc, char **argv, t_strategy *strat, int *bench)
+static void	print_disorder(float disorder)
 {
-	int	i;
-	int	dst;
+	int	value;
 
-	i = 1;
-	dst = 1;
-	*strat = STRAT_ADAPTIVE;
-	*bench = 0;
-	while (i < argc)
-	{
-		if (argv[i][0] == '-' && argv[i][1] == '-')
-		{
-			if (!ft_strcmp(argv[i], "--simple"))
-				*strat = STRAT_SIMPLE;
-			else if (!ft_strcmp(argv[i], "--complex"))
-				*strat = STRAT_COMPLEX;
-			else if (!ft_strcmp(argv[i], "--bench"))
-				*bench = 1;
-		}
-		else
-			argv[dst++] = argv[i];
-		i++;
-	}
-	return (dst);
+	value = (int)(disorder * 10000 + 0.5f);
+	ft_putstr_fd("Disorder: ", 2);
+	ft_putnbr_fd(value / 100, 2);
+	ft_putstr_fd(".", 2);
+	if (value % 100 < 10)
+		ft_putstr_fd("0", 2);
+	ft_putnbr_fd(value % 100, 2);
+	ft_putstr_fd("%\n", 2);
 }
 
 static void	print_operations(t_stats stats)
 {
-	static char	*names[11] = {"sa: ", "sb: ", "ss: ", "pa: ", "pb: ", "ra: ",
-			"rb: ", "rr: ", "rra: ", "rrb: ", "rrr: "};
+	static char	*names[11] = {
+		"sa: ",
+		"sb: ",
+		"ss: ",
+		"pa: ",
+		"pb: ",
+		"ra: ",
+		"rb: ",
+		"rr: ",
+		"rra: ",
+		"rrb: ",
+		"rrr: "
+	};
 	int			*ops;
 	int			i;
 
@@ -87,15 +85,15 @@ static void	print_operations(t_stats stats)
 
 static void	print_benchmark(t_stats stats, float disorder, t_strategy strat)
 {
-	ft_putstr_fd("Disorder: ", 2);
-	ft_putnbr_fd((int)(disorder * 100), 2);
-	ft_putstr_fd("%\n", 2);
+	print_disorder(disorder);
 	if (strat == STRAT_SIMPLE)
 		ft_putstr_fd("Strategy: Simple O(n^2)\n", 2);
+	else if (strat == STRAT_MEDIUM)
+		ft_putstr_fd("Strategy: Medium O(n*sqrt(n))\n", 2);
 	else if (strat == STRAT_COMPLEX)
 		ft_putstr_fd("Strategy: Complex O(n log n)\n", 2);
 	else
-		ft_putstr_fd("Strategy: Adaptive\n", 2);
+		ft_putstr_fd("Strategy: Adaptive O(n^2)/O(n*sqrt(n))/O(n log n)\n", 2);
 	ft_putstr_fd("Total operations: ", 2);
 	ft_putnbr_fd(stats.total, 2);
 	ft_putstr_fd("\n", 2);

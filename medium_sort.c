@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   medium_sort.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mny-aro- <mny-aro-@student.42antananari    +#+  +:+       +#+        */
+/*   By: sahrandr <sahrandr@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 09:48:11 by mny-aro-          #+#    #+#             */
-/*   Updated: 2026/03/13 16:19:02 by mny-aro-         ###   ########.fr       */
+/*   Updated: 2026/03/21 11:01:44 by sahrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,23 @@ static void	push_max_to_a(t_stack **stack_a, t_stack **stack_b)
 {
 	int	max_pos;
 	int	size;
+	int	rot;
 
 	while (*stack_b)
 	{
 		size = stack_size(*stack_b);
 		max_pos = find_max_position(*stack_b);
-		bring_to_top(stack_b, max_pos, size);
+		if (max_pos <= (size / 2))
+		{
+			while (max_pos-- > 0)
+				rb(stack_b);
+		}
+		else
+		{
+			rot = size - max_pos;
+			while (rot-- > 0)
+				rrb(stack_b);
+		}
 		pa(stack_a, stack_b);
 	}
 }

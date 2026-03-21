@@ -20,6 +20,7 @@ COMMON_SRCS	= adaptive_sort.c \
 			  ft_atoi.c \
 			  ft_isdi.c \
 			  ft_lstadd_back.c \
+			  parse_flags.c \
 			  ft_split_mod.c \
 			  ft_substr.c \
 			  ft_strcmp.c \

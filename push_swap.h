@@ -6,7 +6,7 @@
 /*   By: sahrandr <sahrandr@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/28 14:42:45 by sahrandr          #+#    #+#             */
-/*   Updated: 2026/03/20 17:11:33 by sahrandr         ###   ########.fr       */
+/*   Updated: 2026/03/21 15:55:36 by sahrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ char				*ft_substr(char const *s, unsigned int start, size_t len);
 int					is_duplicate(t_stack *stack_a, int num);
 void				ft_lstadd_back(t_stack **stack, t_stack *new_node);
 int					stack_size(t_stack *stack);
+int					is_sorted(t_stack *stack);
 void				assign_index(t_stack *stack_a);
 float				calculate_disorder(t_stack *stack_a);
 void				process_bits(t_stack **stack_a, t_stack **stack_b, int bit);

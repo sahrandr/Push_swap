@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   assign_index.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mny-aro- <mny-aro-@student.42antananari    +#+  +:+       +#+        */
+/*   By: sahrandr <sahrandr@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 13:40:25 by mny-aro-          #+#    #+#             */
-/*   Updated: 2026/03/13 11:13:28 by mny-aro-         ###   ########.fr       */
+/*   Updated: 2026/03/21 14:59:19 by sahrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ static void	bubble_sort(int arr[], int n)
 	}
 }
 
-
 static void	fill_tab(t_stack *stack, int *tab)
 {
 	int	i;
@@ -63,7 +62,7 @@ static void	set_indexes(t_stack *stack, int *tab, int size)
 			if (stack ->value == tab[i])
 			{
 				stack ->index = i;
-				break;
+				break ;
 			}
 			i++;
 		}
@@ -73,8 +72,8 @@ static void	set_indexes(t_stack *stack, int *tab, int size)
 
 void	assign_index(t_stack *stack_a)
 {
-	int size;
-	int *tab;
+	int	size;
+	int	*tab;
 
 	size = stack_size(stack_a);
 	tab = malloc(sizeof(int) * size);
