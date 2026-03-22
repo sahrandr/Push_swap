@@ -6,7 +6,7 @@
 /*   By: sahrandr <sahrandr@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 14:52:40 by sahrandr          #+#    #+#             */
-/*   Updated: 2026/03/20 15:07:10 by sahrandr         ###   ########.fr       */
+/*   Updated: 2026/03/22 11:24:02 by sahrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,24 +28,36 @@ static void	rotation(t_stack **stack)
 	last->next = first;
 }
 
-void	ra(t_stack **a)
+void	ra(t_stack **a, t_counter *counter)
 {
 	rotation(a);
 	write(1, "ra\n", 3);
-	increment_stats(RA);
+	if (counter)
+	{
+		counter->total++;
+		counter->ra++;
+	}
 }
 
-void	rb(t_stack **b)
+void	rb(t_stack **b, t_counter *counter)
 {
 	rotation(b);
 	write(1, "rb\n", 3);
-	increment_stats(RB);
+	if (counter)
+	{
+		counter->total++;
+		counter->rb++;
+	}
 }
 
-void	rr(t_stack **a, t_stack **b)
+void	rr(t_stack **a, t_stack **b, t_counter *counter)
 {
 	rotation(a);
 	rotation(b);
 	write(1, "rr\n", 3);
-	increment_stats(RR);
+	if (counter)
+	{
+		counter->total++;
+		counter->rr++;
+	}
 }

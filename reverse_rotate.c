@@ -6,7 +6,7 @@
 /*   By: sahrandr <sahrandr@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 16:49:51 by sahrandr          #+#    #+#             */
-/*   Updated: 2026/03/20 15:07:48 by sahrandr         ###   ########.fr       */
+/*   Updated: 2026/03/22 11:24:22 by sahrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,24 +31,36 @@ static void	reverse_rotate(t_stack **stack)
 	*stack = up;
 }
 
-void	rra(t_stack **a)
+void	rra(t_stack **a, t_counter *counter)
 {
 	reverse_rotate(a);
 	write(1, "rra\n", 4);
-	increment_stats(RRA);
+	if (counter)
+	{
+		counter->total++;
+		counter->rra++;
+	}
 }
 
-void	rrb(t_stack **b)
+void	rrb(t_stack **b, t_counter *counter)
 {
 	reverse_rotate(b);
 	write(1, "rrb\n", 4);
-	increment_stats(RRB);
+	if (counter)
+	{
+		counter->total++;
+		counter->rrb++;
+	}
 }
 
-void	rrr(t_stack **a, t_stack **b)
+void	rrr(t_stack **a, t_stack **b, t_counter *counter)
 {
 	reverse_rotate(a);
 	reverse_rotate(b);
 	write(1, "rrr\n", 4);
-	increment_stats(RRR);
+	if (counter)
+	{
+		counter->total++;
+		counter->rrr++;
+	}
 }

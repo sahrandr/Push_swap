@@ -4,11 +4,9 @@ BONUS_NAME	= checker
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror
 
-COMMON_SRCS	= adaptive_sort.c \
-			  assign_index.c \
+COMMON_SRCS	= assign_index.c \
 			  bring_to_top.c \
 			  calculate_disorder.c \
-			  complex_sort.c \
 			  count_bytes.c \
 			  count_chunk.c \
 			  create_node.c \
@@ -34,14 +32,13 @@ COMMON_SRCS	= adaptive_sort.c \
 			  radix_sort.c \
 			  reverse_rotate.c \
 			  rotation_utils.c \
-			  simple_sort.c \
 			  small_sort.c \
 			  stack_size.c \
-			  stats.c \
-			  swap_utils.c\
+			  swap_utils.c \
 			  ft_putsr_fd.c\
 			  ft_putnbr_fd.c\
-			  dispatch_sort.c
+			  dispatch_sort.c\
+			  sort_type_without_medium.c
 
 SRCS		= main.c push_swap.c $(COMMON_SRCS)
 BONUS_SRCS	= checker.c $(COMMON_SRCS)

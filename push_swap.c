@@ -6,7 +6,7 @@
 /*   By: sahrandr <sahrandr@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/28 15:56:17 by sahrandr          #+#    #+#             */
-/*   Updated: 2026/03/21 16:29:21 by sahrandr         ###   ########.fr       */
+/*   Updated: 2026/03/22 11:25:53 by sahrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,25 +54,14 @@ static void	print_disorder(float disorder)
 	ft_putstr_fd("%\n", 2);
 }
 
-static void	print_operations(t_stats stats)
+static void	print_operations(t_counter counter)
 {
-	static char	*names[11] = {
-		"sa: ",
-		"sb: ",
-		"ss: ",
-		"pa: ",
-		"pb: ",
-		"ra: ",
-		"rb: ",
-		"rr: ",
-		"rra: ",
-		"rrb: ",
-		"rrr: "
-	};
+	static char	*names[11] = {"sa: ", "sb: ", "ss: ", "pa: ", "pb: ", "ra: ",
+			"rb: ", "rr: ", "rra: ", "rrb: ", "rrr: "};
 	int			*ops;
 	int			i;
 
-	ops = &stats.count_sa;
+	ops = &counter.sa;
 	i = 0;
 	while (i < 11)
 	{
@@ -83,7 +72,7 @@ static void	print_operations(t_stats stats)
 	}
 }
 
-static void	print_benchmark(t_stats stats, float disorder, t_strategy strat)
+static void	print_benchmark(float disorder, t_strategy strat, t_counter counter)
 {
 	print_disorder(disorder);
 	if (strat == STRAT_SIMPLE)
@@ -95,21 +84,23 @@ static void	print_benchmark(t_stats stats, float disorder, t_strategy strat)
 	else
 		ft_putstr_fd("Strategy: Adaptive O(n^2)/O(n*sqrt(n))/O(n log n)\n", 2);
 	ft_putstr_fd("Total operations: ", 2);
-	ft_putnbr_fd(stats.total, 2);
+	ft_putnbr_fd(counter.total, 2);
 	ft_putstr_fd("\n", 2);
-	print_operations(stats);
+	print_operations(counter);
 }
 
 void	sort_and_bench(t_stack **a, t_stack **b, t_strategy strat, int bench)
 {
-	float	disorder;
+	float		disorder;
+	t_counter	counter;
 
+	counter = (t_counter){0};
 	disorder = calculate_disorder(*a);
 	if (stack_size(*a) > 1)
 	{
 		assign_index(*a);
-		dispatch_sort(a, b, strat);
+		dispatch_sort(a, b, strat, &counter);
 	}
 	if (bench)
-		print_benchmark(get_stats(), disorder, strat);
+		print_benchmark(disorder, strat, counter);
 }

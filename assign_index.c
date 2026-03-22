@@ -6,26 +6,26 @@
 /*   By: sahrandr <sahrandr@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 13:40:25 by mny-aro-          #+#    #+#             */
-/*   Updated: 2026/03/21 14:59:19 by sahrandr         ###   ########.fr       */
+/*   Updated: 2026/03/22 09:42:07 by sahrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	bubble_sort(int arr[], int n)
+static void	bubble_sort(int arr[], int n)//Cette fonction trie un tableau d'entiers par ordre croissant. Elle utilise l'algorithme du tri à bulles
 {
-	int	check;
+	int	check;// Drapeau pour savoir si des échanges ont eu lieu.
 	int	i;
 	int	temp;
 
 	check = 1;
-	while (check)
+	while (check)//tant que le tableau n'est pas trié
 	{
 		check = 0;
 		i = 0;
-		while (i < n - 1)
+		while (i < n - 1)//parcourir le tableau
 		{
-			if (arr[i] > arr[i + 1])
+			if (arr[i] > arr[i + 1])//si l'élément courant est plus grand que le suivant, les échanger
 			{
 				temp = arr[i];
 				arr[i] = arr[i + 1];
@@ -37,7 +37,7 @@ static void	bubble_sort(int arr[], int n)
 	}
 }
 
-static void	fill_tab(t_stack *stack, int *tab)
+static void	fill_tab(t_stack *stack, int *tab)//remplir le tableau d'entiers avec les valeurs de la pile
 {
 	int	i;
 
@@ -50,7 +50,7 @@ static void	fill_tab(t_stack *stack, int *tab)
 	}
 }
 
-static void	set_indexes(t_stack *stack, int *tab, int size)
+static void	set_indexes(t_stack *stack, int *tab, int size)//attribuer les index aux éléments de la pile en fonction de leur position dans le tableau trié
 {
 	int	i;
 
@@ -70,7 +70,7 @@ static void	set_indexes(t_stack *stack, int *tab, int size)
 	}
 }
 
-void	assign_index(t_stack *stack_a)
+void	assign_index(t_stack *stack_a)//attribuer les index aux éléments de la pile a en fonction de leur position dans le tableau trié
 {
 	int	size;
 	int	*tab;

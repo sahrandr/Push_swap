@@ -6,7 +6,7 @@
 /*   By: sahrandr <sahrandr@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 14:16:48 by sahrandr          #+#    #+#             */
-/*   Updated: 2026/03/20 15:37:40 by sahrandr         ###   ########.fr       */
+/*   Updated: 2026/03/22 11:24:02 by sahrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,24 @@ void	push(t_stack **src, t_stack **dst)
 	*dst = tmp;
 }
 
-void	pa(t_stack **a, t_stack **b)
+void	pa(t_stack **a, t_stack **b, t_counter *counter)
 {
 	push(b, a);
 	write(1, "pa\n", 3);
-	increment_stats(PA);
+	if (counter)
+	{
+		counter->total++;
+		counter->pa++;
+	}
 }
 
-void	pb(t_stack **a, t_stack **b)
+void	pb(t_stack **a, t_stack **b, t_counter *counter)
 {
 	push(a, b);
-	write(1, "pb\n",3);
-	increment_stats(PB);
+	write(1, "pb\n", 3);
+	if (counter)
+	{
+		counter->total++;
+		counter->pb++;
+	}
 }

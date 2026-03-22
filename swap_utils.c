@@ -6,7 +6,7 @@
 /*   By: sahrandr <sahrandr@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 14:16:19 by sahrandr          #+#    #+#             */
-/*   Updated: 2026/03/20 15:06:30 by sahrandr         ###   ########.fr       */
+/*   Updated: 2026/03/22 11:23:44 by sahrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,24 +26,36 @@ static void	swap(t_stack **stack)
 	*stack = second;
 }
 
-void	sa(t_stack **a)
+void	sa(t_stack **a, t_counter *counter)
 {
 	swap(a);
 	write(1, "sa\n", 3);
-	increment_stats(SA);
+	if (counter)
+	{
+		counter->total++;
+		counter->sa++;
+	}
 }
 
-void	sb(t_stack **b)
+void	sb(t_stack **b, t_counter *counter)
 {
 	swap(b);
 	write(1, "sb\n", 3);
-	increment_stats(SB);
+	if (counter)
+	{
+		counter->total++;
+		counter->sb++;
+	}
 }
 
-void	ss(t_stack **a, t_stack **b)
+void	ss(t_stack **a, t_stack **b, t_counter *counter)
 {
 	swap(a);
 	swap(b);
 	write(1, "ss\n", 3);
-	increment_stats(SS);
+	if (counter)
+	{
+		counter->total++;
+		counter->ss++;
+	}
 }

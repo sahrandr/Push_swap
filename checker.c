@@ -6,7 +6,7 @@
 /*   By: sahrandr <sahrandr@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/17 15:04:59 by sahrandr          #+#    #+#             */
-/*   Updated: 2026/03/21 10:41:16 by sahrandr         ###   ########.fr       */
+/*   Updated: 2026/03/22 11:24:22 by sahrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,25 @@
 static int	do_instruction(char *line, t_stack **a, t_stack **b)
 {
 	if (!ft_strcmp(line, "sa"))
-		sa(a); // on verifie si elle est NUll pas l'inverse.
+		sa(a, NULL);
 	else if (!ft_strcmp(line, "sb"))
-		sb(b);
+		sb(b, NULL);
 	else if (!ft_strcmp(line, "ss"))
-		ss(a, b);
+		ss(a, b, NULL);
 	else if (!ft_strcmp(line, "ra"))
-		ra(a);
+		ra(a, NULL);
 	else if (!ft_strcmp(line, "rb"))
-		rb(b);
+		rb(b, NULL);
 	else if (!ft_strcmp(line, "pa"))
-		pa(a, b);
+		pa(a, b, NULL);
 	else if (!ft_strcmp(line, "pb"))
-		pb(a, b); // meuf le PAAAAAAAAAAAAAAAAAAAAAAAAAAA XD !!!
+		pb(a, b, NULL);
 	else if (!ft_strcmp(line, "rra"))
-		rra(a);
+		rra(a, NULL);
 	else if (!ft_strcmp(line, "rrb"))
-		rrb(b);
+		rrb(b, NULL);
 	else if (!ft_strcmp(line, "rrr"))
-		rrr(a, b);
+		rrr(a, b, NULL);
 	else
 		return (1);
 	return (0);

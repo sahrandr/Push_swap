@@ -6,13 +6,13 @@
 /*   By: sahrandr <sahrandr@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 04:48:26 by mny-aro-          #+#    #+#             */
-/*   Updated: 2026/03/21 15:02:44 by sahrandr         ###   ########.fr       */
+/*   Updated: 2026/03/21 17:53:09 by sahrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-float	calculate_disorder(t_stack *stack_a)
+float	calculate_disorder(t_stack *stack_a)//calculer le désordre de la pile a en comptant le nombre de paires d'éléments dans le mauvais ordre par rapport au nombre total de paires
 {
 	int		mistakes;
 	int		total_pairs;

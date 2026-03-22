@@ -6,13 +6,14 @@
 /*   By: sahrandr <sahrandr@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 15:49:48 by mny-aro-          #+#    #+#             */
-/*   Updated: 2026/03/20 17:19:29 by sahrandr         ###   ########.fr       */
+/*   Updated: 2026/03/22 11:25:28 by sahrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	dispatch_sort(t_stack **a, t_stack **b, t_strategy strat)
+void	dispatch_sort(t_stack **a, t_stack **b, t_strategy strat,
+		t_counter *counter)
 {
 	int	size;
 
@@ -20,23 +21,23 @@ void	dispatch_sort(t_stack **a, t_stack **b, t_strategy strat)
 	if (size <= 5)
 	{
 		if (size == 2 && ((*a)->value > (*a)->next->value))
-			sa(a);
+			sa(a, counter);
 		else if (size == 3)
-			sort_3(a);
+			sort_3(a, counter);
 		else if (size == 4 || size == 5)
-			sort_5(a, b);
+			sort_5(a, b, counter);
 		else
 			return ;
 	}
 	else
 	{
 		if (strat == STRAT_SIMPLE)
-			simple_sort(a, b);
+			simple_sort(a, b, counter);
 		else if (strat == STRAT_MEDIUM)
-			medium_sort(a, b);
+			medium_sort(a, b, counter);
 		else if (strat == STRAT_COMPLEX)
-			complex_sort(a, b);
+			complex_sort(a, b, counter);
 		else if (strat == STRAT_ADAPTIVE)
-			adaptive_sort(a, b);
+			adaptive_sort(a, b, counter);
 	}
 }

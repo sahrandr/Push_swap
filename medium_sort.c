@@ -6,13 +6,14 @@
 /*   By: sahrandr <sahrandr@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 09:48:11 by mny-aro-          #+#    #+#             */
-/*   Updated: 2026/03/21 11:01:44 by sahrandr         ###   ########.fr       */
+/*   Updated: 2026/03/22 11:24:52 by sahrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	push_max_to_a(t_stack **stack_a, t_stack **stack_b)
+static void	push_max_to_a(t_stack **stack_a, t_stack **stack_b,
+		t_counter *counter)
 {
 	int	max_pos;
 	int	size;
@@ -25,19 +26,20 @@ static void	push_max_to_a(t_stack **stack_a, t_stack **stack_b)
 		if (max_pos <= (size / 2))
 		{
 			while (max_pos-- > 0)
-				rb(stack_b);
+				rb(stack_b, counter);
 		}
 		else
 		{
 			rot = size - max_pos;
 			while (rot-- > 0)
-				rrb(stack_b);
+				rrb(stack_b, counter);
 		}
-		pa(stack_a, stack_b);
+		pa(stack_a, stack_b, counter);
 	}
 }
 
-static void	push_chunks_to_b(t_stack **stack_a, t_stack **stack_b)
+static void	push_chunks_to_b(t_stack **stack_a, t_stack **stack_b,
+		t_counter *counter)
 {
 	int	chunk_size;
 	int	current_chunk;
@@ -56,16 +58,16 @@ static void	push_chunks_to_b(t_stack **stack_a, t_stack **stack_b)
 			current_chunk++;
 		else
 		{
-			bring_to_top(stack_a, position, stack_size(*stack_a));
-			pb(stack_a, stack_b);
+			bring_to_top(stack_a, position, stack_size(*stack_a), counter);
+			pb(stack_a, stack_b, counter);
 		}
 	}
 }
 
-void	medium_sort(t_stack **stack_a, t_stack **stack_b)
+void	medium_sort(t_stack **stack_a, t_stack **stack_b, t_counter *counter)
 {
 	if (!*stack_a || !(*stack_a)->next)
 		return ;
-	push_chunks_to_b(stack_a, stack_b);
-	push_max_to_a(stack_a, stack_b);
+	push_chunks_to_b(stack_a, stack_b, counter);
+	push_max_to_a(stack_a, stack_b, counter);
 }
