@@ -6,7 +6,7 @@
 /*   By: sahrandr <sahrandr@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/28 15:56:17 by sahrandr          #+#    #+#             */
-/*   Updated: 2026/03/22 11:25:53 by sahrandr         ###   ########.fr       */
+/*   Updated: 2026/03/24 15:41:16 by sahrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,67 +40,90 @@ int	fill_stack(t_stack **stack_a, char **args, int must_free)
 	return (0);
 }
 
+/* ... includes ... */
+
 static void	print_disorder(float disorder)
 {
-	int	value;
+    int	value;
 
-	value = (int)(disorder * 10000 + 0.5f);
-	ft_putstr_fd("Disorder: ", 2);
-	ft_putnbr_fd(value / 100, 2);
-	ft_putstr_fd(".", 2);
-	if (value % 100 < 10)
-		ft_putstr_fd("0", 2);
-	ft_putnbr_fd(value % 100, 2);
-	ft_putstr_fd("%\n", 2);
+    value = (int)(disorder * 10000 + 0.5f);
+    ft_putstr_fd("[bench] disorder: ", 2);
+    ft_putnbr_fd(value / 100, 2);
+    ft_putstr_fd(".", 2);
+    if (value % 100 < 10)
+        ft_putstr_fd("0", 2);
+    ft_putnbr_fd(value % 100, 2);
+    ft_putstr_fd("%\n", 2);
 }
 
 static void	print_operations(t_counter counter)
 {
-	static char	*names[11] = {"sa: ", "sb: ", "ss: ", "pa: ", "pb: ", "ra: ",
-			"rb: ", "rr: ", "rra: ", "rrb: ", "rrr: "};
-	int			*ops;
-	int			i;
-
-	ops = &counter.sa;
-	i = 0;
-	while (i < 11)
-	{
-		ft_putstr_fd(names[i], 2);
-		ft_putnbr_fd(ops[i], 2);
-		ft_putstr_fd("\n", 2);
-		i++;
-	}
+    ft_putstr_fd("[bench] ", 2);
+    ft_putstr_fd("sa: ", 2);
+    ft_putnbr_fd(counter.sa, 2);
+    ft_putstr_fd(", sb: ", 2);
+    ft_putnbr_fd(counter.sb, 2);
+    ft_putstr_fd(", ss: ", 2);
+    ft_putnbr_fd(counter.ss, 2);
+    ft_putstr_fd(", pa: ", 2);
+    ft_putnbr_fd(counter.pa, 2);
+    ft_putstr_fd(", pb: ", 2);
+    ft_putnbr_fd(counter.pb, 2);
+    ft_putstr_fd("\n[bench] ", 2);
+    ft_putstr_fd("ra: ", 2);
+    ft_putnbr_fd(counter.ra, 2);
+    ft_putstr_fd(", rb: ", 2);
+    ft_putnbr_fd(counter.rb, 2);
+    ft_putstr_fd(", rr: ", 2);
+    ft_putnbr_fd(counter.rr, 2);
+    ft_putstr_fd(", rra: ", 2);
+    ft_putnbr_fd(counter.rra, 2);
+    ft_putstr_fd(", rrb: ", 2);
+    ft_putnbr_fd(counter.rrb, 2);
+    ft_putstr_fd(", rrr: ", 2);
+    ft_putnbr_fd(counter.rrr, 2);
+    ft_putstr_fd("\n", 2);
 }
 
 static void	print_benchmark(float disorder, t_strategy strat, t_counter counter)
 {
-	print_disorder(disorder);
-	if (strat == STRAT_SIMPLE)
-		ft_putstr_fd("Strategy: Simple O(n^2)\n", 2);
-	else if (strat == STRAT_MEDIUM)
-		ft_putstr_fd("Strategy: Medium O(n*sqrt(n))\n", 2);
-	else if (strat == STRAT_COMPLEX)
-		ft_putstr_fd("Strategy: Complex O(n log n)\n", 2);
-	else
-		ft_putstr_fd("Strategy: Adaptive O(n^2)/O(n*sqrt(n))/O(n log n)\n", 2);
-	ft_putstr_fd("Total operations: ", 2);
-	ft_putnbr_fd(counter.total, 2);
-	ft_putstr_fd("\n", 2);
-	print_operations(counter);
+    print_disorder(disorder);
+    ft_putstr_fd("[bench] strategy: ", 2);
+    
+    if (strat == STRAT_ADAPTIVE)
+    {
+        if (counter.actual_strat == STRAT_SIMPLE)
+            ft_putstr_fd("adaptive / O(n^2)\n", 2);
+        else if (counter.actual_strat == STRAT_MEDIUM)
+            ft_putstr_fd("adaptive / O(n√n)\n", 2);
+        else
+            ft_putstr_fd("adaptive / O(n log n)\n", 2);
+    }
+    else if (strat == STRAT_SIMPLE)
+        ft_putstr_fd("simple / O(n^2)\n", 2);
+    else if (strat == STRAT_MEDIUM)
+        ft_putstr_fd("medium / O(n√n)\n", 2);
+    else
+        ft_putstr_fd("complex / O(n log n)\n", 2);
+
+    ft_putstr_fd("[bench] total_ops: ", 2);
+    ft_putnbr_fd(counter.total, 2);
+    ft_putstr_fd("\n", 2);
+    print_operations(counter);
 }
 
 void	sort_and_bench(t_stack **a, t_stack **b, t_strategy strat, int bench)
 {
-	float		disorder;
-	t_counter	counter;
+    float		disorder;
+    t_counter	counter;
 
-	counter = (t_counter){0};
-	disorder = calculate_disorder(*a);
-	if (stack_size(*a) > 1)
-	{
-		assign_index(*a);
-		dispatch_sort(a, b, strat, &counter);
-	}
-	if (bench)
-		print_benchmark(disorder, strat, counter);
+    counter = (t_counter){0};
+    disorder = calculate_disorder(*a);
+    if (stack_size(*a) > 1)
+    {
+        assign_index(*a);
+        dispatch_sort(a, b, strat, &counter);
+    }
+    if (bench)
+        print_benchmark(disorder, strat, counter);
 }
