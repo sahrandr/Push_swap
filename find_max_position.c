@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   find_max_position.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mny-aro- <mny-aro-@student.42antananari    +#+  +:+       +#+        */
+/*   By: sahrandr <sahrandr@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 10:33:06 by mny-aro-          #+#    #+#             */
-/*   Updated: 2026/03/09 11:35:00 by mny-aro-         ###   ########.fr       */
+/*   Updated: 2026/03/27 11:30:43 by sahrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	find_max_position(t_stack *stack) /*meme principe que min */
+int	find_max_position(t_stack *stack)
 {
 	int	max_value;
 	int	max_pos;

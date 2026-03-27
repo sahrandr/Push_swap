@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sahrandr <sahrandr@student.42antananari    +#+  +:+       +#+        */
+/*   By: mny-aro- <mny-aro-@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 14:16:48 by sahrandr          #+#    #+#             */
-/*   Updated: 2026/03/22 11:24:02 by sahrandr         ###   ########.fr       */
+/*   Updated: 2026/03/26 17:10:53 by mny-aro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,24 +24,20 @@ void	push(t_stack **src, t_stack **dst)
 	*dst = tmp;
 }
 
-void	pa(t_stack **a, t_stack **b, t_counter *counter)
+void	pa(t_stack **a, t_stack **b, t_stats *stats)
 {
 	push(b, a);
-	write(1, "pa\n", 3);
-	if (counter)
-	{
-		counter->total++;
-		counter->pa++;
-	}
+	if (stats->print_ops)
+		write(1, "pa\n", 3);
+	stats->count_pa++;
+	stats->total++;
 }
 
-void	pb(t_stack **a, t_stack **b, t_counter *counter)
+void	pb(t_stack **a, t_stack **b, t_stats *stats)
 {
 	push(a, b);
-	write(1, "pb\n", 3);
-	if (counter)
-	{
-		counter->total++;
-		counter->pb++;
-	}
+	if (stats->print_ops)
+		write(1, "pb\n", 3);
+	stats->count_pb++;
+	stats->total++;
 }

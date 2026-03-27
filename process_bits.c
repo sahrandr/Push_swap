@@ -3,17 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   process_bits.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sahrandr <sahrandr@student.42antananari    +#+  +:+       +#+        */
+/*   By: mny-aro- <mny-aro-@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 14:00:21 by mny-aro-          #+#    #+#             */
-/*   Updated: 2026/03/22 11:25:01 by sahrandr         ###   ########.fr       */
+/*   Updated: 2026/03/26 17:25:39 by mny-aro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	process_bits(t_stack **stack_a, t_stack **stack_b, int bit,
-		t_counter *counter)
+void	process_bits(
+			t_stack **stack_a,
+			t_stack **stack_b,
+			int bit,
+			t_stats *stats)
 {
 	int	size;
 	int	i;
@@ -23,13 +26,13 @@ void	process_bits(t_stack **stack_a, t_stack **stack_b, int bit,
 	while (i < size)
 	{
 		if (get_bit((*stack_a)->index, bit) == 0)
-			pb(stack_a, stack_b, counter);
+			pb(stack_a, stack_b, stats);
 		else
-			ra(stack_a, counter);
+			ra(stack_a, stats);
 		i++;
 	}
 	while (*stack_b)
 	{
-		pa(stack_a, stack_b, counter);
+		pa(stack_a, stack_b, stats);
 	}
 }

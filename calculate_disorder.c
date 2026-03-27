@@ -3,28 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   calculate_disorder.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sahrandr <sahrandr@student.42antananari    +#+  +:+       +#+        */
+/*   By: mny-aro- <mny-aro-@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 04:48:26 by mny-aro-          #+#    #+#             */
-/*   Updated: 2026/03/21 17:53:09 by sahrandr         ###   ########.fr       */
+/*   Updated: 2026/03/13 10:42:45 by mny-aro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-float	calculate_disorder(t_stack *stack_a)//calculer le désordre de la pile a en comptant le nombre de paires d'éléments dans le mauvais ordre par rapport au nombre total de paires
+float	calculate_disorder(t_stack *stack_a)
 {
 	int		mistakes;
 	int		total_pairs;
-	int		size;
 	t_stack	*ptr1;
 	t_stack	*ptr2;
 
 	if (!stack_a || !stack_a->next)
-		return (0.0);
+		return (0.0f);
 	mistakes = 0;
 	total_pairs = 0;
-	size = stack_size(stack_a);
 	ptr1 = stack_a;
 	while (ptr1 && ptr1->next)
 	{
@@ -38,5 +36,5 @@ float	calculate_disorder(t_stack *stack_a)//calculer le désordre de la pile a e
 		}
 		ptr1 = ptr1->next;
 	}
-	return ((float)mistakes / total_pairs);
+	return ((float)mistakes / (float)total_pairs);
 }

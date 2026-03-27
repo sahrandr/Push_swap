@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sahrandr <sahrandr@student.42antananari    +#+  +:+       +#+        */
+/*   By: mny-aro- <mny-aro-@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 06:29:00 by sahrandr          #+#    #+#             */
-/*   Updated: 2026/03/04 14:42:48 by sahrandr         ###   ########.fr       */
+/*   Updated: 2026/03/26 17:21:35 by mny-aro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ char	*ft_strdup(const char *s)
 	}
 	return (dest);
 }
-
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {

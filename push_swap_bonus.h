@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   push_swap_bonus.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sahrandr <sahrandr@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/03 17:23:09 by sahrandr          #+#    #+#             */
-/*   Updated: 2026/02/03 18:20:42 by sahrandr         ###   ########.fr       */
+/*   Created: 2026/03/27 13:53:15 by sahrandr          #+#    #+#             */
+/*   Updated: 2026/03/27 15:02:51 by sahrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef PUSH_SWAP_BONUS_H
+# define PUSH_SWAP_BONUS_H
 
-void	ft_lstdelone(t_list *lst, void (*del)(void *))
-{
-	if (!lst || !del)
-		return ;
-	del(lst->content);
-	free(lst);
-}
+# include "push_swap.h"
+
+int		do_instruction(char *line, t_stack **a, t_stack **b);
+int		checker_fill_stack(t_stack **stack_a, char **args, int must_free);
+char	*read_instruction(void);
+
+#endif

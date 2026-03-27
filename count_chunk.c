@@ -6,7 +6,7 @@
 /*   By: mny-aro- <mny-aro-@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 10:31:42 by mny-aro-          #+#    #+#             */
-/*   Updated: 2026/03/09 10:32:26 by mny-aro-         ###   ########.fr       */
+/*   Updated: 2026/03/26 17:24:31 by mny-aro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	count_chunk(int size)
 {
-    int	i;
-    
-    i = 1;
-    while (i * i < size)
-        i++;
-    return (i);
+	int	i;
+
+	i = 1;
+	while (i * i < size)
+		i++;
+	return (i);
 }

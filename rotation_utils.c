@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotation_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sahrandr <sahrandr@student.42antananari    +#+  +:+       +#+        */
+/*   By: mny-aro- <mny-aro-@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 14:52:40 by sahrandr          #+#    #+#             */
-/*   Updated: 2026/03/22 11:24:02 by sahrandr         ###   ########.fr       */
+/*   Updated: 2026/03/26 17:10:53 by mny-aro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,36 +28,30 @@ static void	rotation(t_stack **stack)
 	last->next = first;
 }
 
-void	ra(t_stack **a, t_counter *counter)
+void	ra(t_stack **a, t_stats *stats)
 {
 	rotation(a);
-	write(1, "ra\n", 3);
-	if (counter)
-	{
-		counter->total++;
-		counter->ra++;
-	}
+	if (stats->print_ops)
+		write(1, "ra\n", 3);
+	stats->count_ra++;
+	stats->total++;
 }
 
-void	rb(t_stack **b, t_counter *counter)
+void	rb(t_stack **b, t_stats *stats)
 {
 	rotation(b);
-	write(1, "rb\n", 3);
-	if (counter)
-	{
-		counter->total++;
-		counter->rb++;
-	}
+	if (stats->print_ops)
+		write(1, "rb\n", 3);
+	stats->count_rb++;
+	stats->total++;
 }
 
-void	rr(t_stack **a, t_stack **b, t_counter *counter)
+void	rr(t_stack **a, t_stack **b, t_stats *stats)
 {
 	rotation(a);
 	rotation(b);
-	write(1, "rr\n", 3);
-	if (counter)
-	{
-		counter->total++;
-		counter->rr++;
-	}
+	if (stats->print_ops)
+		write(1, "rr\n", 3);
+	stats->count_rr++;
+	stats->total++;
 }

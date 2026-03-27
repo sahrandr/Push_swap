@@ -1,20 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_in_chunk.c                                      :+:      :+:    :+:   */
+/*   adaptive_sort.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mny-aro- <mny-aro-@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/09 10:48:29 by mny-aro-          #+#    #+#             */
-/*   Updated: 2026/03/26 17:21:58 by mny-aro-         ###   ########.fr       */
+/*   Created: 2026/03/11 10:24:24 by mny-aro-          #+#    #+#             */
+/*   Updated: 2026/03/22 16:12:07 by mny-aro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	is_in_chunk(int index, int chunk_min, int chunk_max)
+void	adaptive_sort(t_stack **a, t_stack **b, t_stats *stats)
 {
-	if (index >= chunk_min && index <= chunk_max)
-		return (1);
-	return (0);
+	float	disorder;
+
+	if (!*a || !(*a)->next)
+		return ;
+	disorder = calculate_disorder(*a);
+	if (disorder == 0)
+		return ;
+	if (disorder < 0.2)
+		simple_sort(a, b, stats);
+	else if (disorder < 0.5)
+		medium_sort(a, b, stats);
+	else
+		complex_sort(a, b, stats);
 }

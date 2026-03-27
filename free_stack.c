@@ -17,14 +17,14 @@ void	free_stack(t_stack **stack)
 	t_stack	*first;
 	t_stack	*next;
 
-	if (stack == NULL || *stack == NULL)//verification de securiter
+	if (stack == NULL || *stack == NULL)
 		return ;
 	first = *stack;
 	while (first != NULL)
 	{
-		next = first->next;//sauvegarde de l'adresse du prochaim
-		free(first);//nettoie
-		first = next;//regardant le prochain
+		next = first->next;
+		free(first);
+		first = next;
 	}
-	*stack = NULL;//"c'est vide !"
+	*stack = NULL;
 }
