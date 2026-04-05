@@ -3,40 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   parse_flags.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mny-aro- <mny-aro-@student.42antananari    +#+  +:+       +#+        */
+/*   By: sahrandr <sahrandr@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 10:00:00 by mny-aro-          #+#    #+#             */
-/*   Updated: 2026/03/26 17:43:33 by mny-aro-         ###   ########.fr       */
+/*   Updated: 2026/04/05 09:13:09 by sahrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	set_forced_strategy(char *name, t_strategy *strat)
+static int	apply_strategy(t_strategy *strat, int *mode, t_strategy strategy)
 {
-	if (!ft_strcmp(name, "simple"))
-		*strat = STRAT_SIMPLE;
-	else if (!ft_strcmp(name, "medium"))
-		*strat = STRAT_MEDIUM;
-	else if (!ft_strcmp(name, "complex"))
-		*strat = STRAT_COMPLEX;
-	else if (!ft_strcmp(name, "adaptive"))
-		*strat = STRAT_ADAPTIVE;
-	else
+	if (*mode & MODE_STRAT_SET)
 		return (1);
+	*strat = strategy;
+	*mode |= MODE_STRAT_SET;
 	return (0);
 }
 
 static int	set_flag(char *arg, t_strategy *strat, int *mode)
 {
 	if (!ft_strcmp(arg, "--simple"))
-		*strat = STRAT_SIMPLE;
+		return (apply_strategy(strat, mode, STRAT_SIMPLE));
 	else if (!ft_strcmp(arg, "--medium"))
-		*strat = STRAT_MEDIUM;
+		return (apply_strategy(strat, mode, STRAT_MEDIUM));
 	else if (!ft_strcmp(arg, "--complex"))
-		*strat = STRAT_COMPLEX;
+		return (apply_strategy(strat, mode, STRAT_COMPLEX));
 	else if (!ft_strcmp(arg, "--adaptive"))
-		*strat = STRAT_ADAPTIVE;
+		return (apply_strategy(strat, mode, STRAT_ADAPTIVE));
 	else if (!ft_strcmp(arg, "--bench"))
 		*mode |= MODE_BENCH;
 	else if (!ft_strcmp(arg, "--count-only"))
@@ -48,13 +42,7 @@ static int	set_flag(char *arg, t_strategy *strat, int *mode)
 
 static int	handle_option(char **argv, int *i, t_strategy *s, int *m)
 {
-	if (!ft_strcmp(argv[*i], "--force"))
-	{
-		if (!argv[*i + 1] || set_forced_strategy(argv[*i + 1], s))
-			return (1);
-		(*i)++;
-	}
-	else if (set_flag(argv[*i], s, m))
+	if (set_flag(argv[*i], s, m))
 		return (1);
 	return (0);
 }
@@ -79,6 +67,7 @@ int	parse_flags(int argc, char **argv, t_strategy *strat, int *mode)
 			argv[dst++] = argv[i];
 		i++;
 	}
+	*mode &= (MODE_BENCH | MODE_STRAT_SET | MODE_COUNT_ONLY);
 	argv[dst] = NULL;
 	return (dst);
 }

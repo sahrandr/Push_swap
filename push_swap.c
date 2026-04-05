@@ -6,7 +6,7 @@
 /*   By: sahrandr <sahrandr@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/28 15:56:17 by sahrandr          #+#    #+#             */
-/*   Updated: 2026/03/27 11:38:06 by sahrandr         ###   ########.fr       */
+/*   Updated: 2026/04/05 09:14:57 by sahrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,26 +51,26 @@ static void	print_operations(t_stats stats)
 {
 	ft_putstr_fd("sa: ", 2);
 	ft_putnbr_fd(stats.count_sa, 2);
-	ft_putstr_fd(", sb: ", 2);
+	ft_putstr_fd(" sb: ", 2);
 	ft_putnbr_fd(stats.count_sb, 2);
-	ft_putstr_fd(", ss: ", 2);
+	ft_putstr_fd(" ss: ", 2);
 	ft_putnbr_fd(stats.count_ss, 2);
-	ft_putstr_fd(", pa: ", 2);
+	ft_putstr_fd(" pa: ", 2);
 	ft_putnbr_fd(stats.count_pa, 2);
-	ft_putstr_fd(", pb: ", 2);
+	ft_putstr_fd(" pb: ", 2);
 	ft_putnbr_fd(stats.count_pb, 2);
 	ft_putstr_fd("\n[bench] ", 2);
 	ft_putstr_fd("ra: ", 2);
 	ft_putnbr_fd(stats.count_ra, 2);
-	ft_putstr_fd(", rb: ", 2);
+	ft_putstr_fd(" rb: ", 2);
 	ft_putnbr_fd(stats.count_rb, 2);
-	ft_putstr_fd(", rr: ", 2);
+	ft_putstr_fd(" rr: ", 2);
 	ft_putnbr_fd(stats.count_rr, 2);
-	ft_putstr_fd(", rra: ", 2);
+	ft_putstr_fd(" rra: ", 2);
 	ft_putnbr_fd(stats.count_rra, 2);
-	ft_putstr_fd(", rrb: ", 2);
+	ft_putstr_fd(" rrb: ", 2);
 	ft_putnbr_fd(stats.count_rrb, 2);
-	ft_putstr_fd(", rrr: ", 2);
+	ft_putstr_fd(" rrr: ", 2);
 	ft_putnbr_fd(stats.count_rrr, 2);
 	ft_putstr_fd("\n", 2);
 }
@@ -82,18 +82,18 @@ static void	print_benchmark(t_stats stats, float disorder, t_strategy strat)
 	if (strat == STRAT_ADAPTIVE)
 	{
 		if (stats.actual_strat == STRAT_SIMPLE)
-			ft_putstr_fd("adaptive / O(n^2)\n", 2);
+			ft_putstr_fd("Adaptive / O(n^2)\n", 2);
 		else if (stats.actual_strat == STRAT_MEDIUM)
-			ft_putstr_fd("adaptive / O(n√n)\n", 2);
+			ft_putstr_fd("Adaptive / O(n√n)\n", 2);
 		else
-			ft_putstr_fd("adaptive / O(n log n)\n", 2);
+			ft_putstr_fd("Adaptive / O(n log n)\n", 2);
 	}
 	else if (strat == STRAT_SIMPLE)
-		ft_putstr_fd("simple (O(n^2))\n", 2);
+		ft_putstr_fd("Simple / O(n^2)\n", 2);
 	else if (strat == STRAT_MEDIUM)
-		ft_putstr_fd("medium O(n√n)\n", 2);
+		ft_putstr_fd("Medium / O(n√n)\n", 2);
 	else
-		ft_putstr_fd("complex (O(n log n))\n", 2);
+		ft_putstr_fd("Complex / O(n log n)\n", 2);
 	ft_putstr_fd("[bench] total_ops: ", 2);
 	ft_putnbr_fd(stats.total, 2);
 	ft_putstr_fd("\n", 2);
@@ -107,6 +107,7 @@ void	sort_and_bench(t_stack **a, t_stack **b, t_strategy strat, int mode)
 	t_stats	stats;
 
 	init_stats(&stats);
+	stats.mode = mode;
 	if (mode & MODE_COUNT_ONLY)
 		stats.print_ops = 0;
 	disorder = calculate_disorder(*a);
@@ -115,11 +116,12 @@ void	sort_and_bench(t_stack **a, t_stack **b, t_strategy strat, int mode)
 		assign_index(*a);
 		dispatch_sort(a, b, strat, &stats);
 	}
-	if (mode & MODE_BENCH)
-		print_benchmark(stats, disorder, strat);
 	if (mode & MODE_COUNT_ONLY)
 	{
 		ft_putnbr_fd(stats.total, 1);
-		ft_putstr_fd("\n", 1);
+		write(1, "\n", 1);
+		return ;
 	}
+	if (mode & MODE_BENCH)
+		print_benchmark(stats, disorder, strat);
 }

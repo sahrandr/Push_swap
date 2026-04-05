@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stats.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mny-aro- <mny-aro-@student.42antananari    +#+  +:+       +#+        */
+/*   By: mny-aro- <mny-aro-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/20 15:03:15 by sahrandr          #+#    #+#             */
-/*   Updated: 2026/03/26 17:27:20 by mny-aro-         ###   ########.fr       */
+/*   Updated: 2026/03/30 15:31:24 by mny-aro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,6 @@ void	init_stats(t_stats *stats)
 	stats->count_rrb = 0;
 	stats->count_rrr = 0;
 	stats->print_ops = 1;
+	stats->mode = 0;
+	stats->actual_strat = STRAT_ADAPTIVE;
 }

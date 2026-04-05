@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker_parse.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sahrandr <sahrandr@student.42antananari    +#+  +:+       +#+        */
+/*   By: mny-aro- <mny-aro-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 17:35:00 by mny-aro-          #+#    #+#             */
-/*   Updated: 2026/03/27 14:32:51 by sahrandr         ###   ########.fr       */
+/*   Updated: 2026/04/04 22:20:33 by mny-aro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,6 @@ int	checker_fill_stack(t_stack **stack_a, char **args, int must_free)
 	i = 0;
 	while (args[i] != NULL)
 	{
-		if (args[i][0] == '\0')
-		{
-			i++;
-			continue ;
-		}
 		if (add_number(stack_a, args[i], args, must_free))
 			return (1);
 		i++;
@@ -62,7 +57,7 @@ int	checker_fill_stack(t_stack **stack_a, char **args, int must_free)
 
 char	*read_instruction(void)
 {
-	char	buffer[100];
+	char	buffer[1024];
 	char	c;
 	int		i;
 	int		rd;
@@ -71,7 +66,7 @@ char	*read_instruction(void)
 	rd = read(0, &c, 1);
 	if (rd <= 0)
 		return (NULL);
-	while (rd > 0 && c != '\n' && i < 99)
+	while (rd > 0 && c != '\n' && i < 1023)
 	{
 		buffer[i++] = c;
 		rd = read(0, &c, 1);

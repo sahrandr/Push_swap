@@ -1,4 +1,4 @@
-*This activity has been created as part of the curriculum by sahrandr, mny-aro-*
+*This project has been created as part of the 42 curriculum by sahrandr, mny-aro-*
 
 ## Description
 
@@ -86,8 +86,6 @@ Both learners reviewed and validated all critical code paths together.
   - `./push_swap --adaptive 4 67 3 87 23`
 - Benchmark mode:
   - `./push_swap --bench --adaptive 4 67 3 87 23`
-- Count-only mode:
-  - `./push_swap --count-only 3 2 1`
 
 ### Checker
 - Internal checker:
